@@ -1,0 +1,39 @@
+################
+miaplpy.load.processor      = isce  #[isce,snap,gamma,roipac], auto for isceTops
+miaplpy.load.updateMode     = auto  #[yes / no], auto for yes, skip re-loading if HDF5 files are complete
+miaplpy.load.compression    = auto  #[gzip / lzf / no], auto for no.
+miaplpy.load.autoPath       = yes    # [yes, no] auto for no
+        
+miaplpy.load.slcFile        = ../merged/SLC/*/*.slc.full  #[path2slc_file]
+##---------for ISCE only:
+miaplpy.load.metaFile       = ../reference/IW*.xml
+miaplpy.load.baselineDir    = ../baselines
+##---------geometry datasets:
+miaplpy.load.demFile          = ../merged/geom_reference/hgt.rdr.full
+miaplpy.load.lookupYFile      = ../merged/geom_reference/lat.rdr.full
+miaplpy.load.lookupXFile      = ../merged/geom_reference/lon.rdr.full
+miaplpy.load.incAngleFile     = ../merged/geom_reference/los.rdr.full
+miaplpy.load.azAngleFile      = ../merged/geom_reference/los.rdr.full
+miaplpy.load.shadowMaskFile   = ../merged/geom_reference/shadowMask.rdr.full
+miaplpy.load.waterMaskFile    = None
+##---------interferogram datasets:
+miaplpy.load.unwFile        = ./inverted/interferograms_single_reference/*/*fine*.unw
+miaplpy.load.corFile        = ./inverted/interferograms_single_reference/*/*fine*.cor
+miaplpy.load.connCompFile   = ./inverted/interferograms_single_reference/*/*.unw.conncomp
+        
+##---------subset (optional):
+## if both yx and lalo are specified, use lalo option unless a) no lookup file AND b) dataset is in radar coord
+miaplpy.subset.lalo         = -0.199:-0.142,-78.612:-78.578
+
+# MiaplPy options 
+miaplpy.multiprocessing.numProcessor   = 40
+miaplpy.interferograms.networkType  = single_reference
+
+## Mintpy options
+mintpy.compute.cluster     = local  # if dask is not available, set this option to no 
+mintpy.compute.numWorker   = 8 
+
+mintpy.reference.lalo     = -0.1786, -78.5933
+mintpy.troposphericDelay.method = no
+
+
